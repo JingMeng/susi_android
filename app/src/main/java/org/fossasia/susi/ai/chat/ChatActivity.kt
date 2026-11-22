@@ -13,11 +13,11 @@ import android.net.ConnectivityManager
 import android.os.*
 import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
-import android.support.design.widget.Snackbar
-import android.support.v4.app.ActivityCompat
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
+import androidx.core.app.ActivityCompat
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
@@ -79,11 +79,7 @@ class ChatActivity: AppCompatActivity(), IChatView {
         setUpUI()
         initializationMethod(firstRun)
 
-        if(intent.getStringExtra("example") != null) {
-            example = intent.getStringExtra("example")
-        } else {
-            example = ""
-        }
+        example = intent.getStringExtra("example") ?: ""
 
         networkStateReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context, intent: Intent) {
@@ -178,7 +174,7 @@ class ChatActivity: AppCompatActivity(), IChatView {
         rv_chat_feed.addOnLayoutChangeListener({ _, _, _, _, bottom, _, _, _, oldBottom ->
             if (bottom < oldBottom) {
                 rv_chat_feed.postDelayed({
-                    var scrollTo = rv_chat_feed.adapter.itemCount - 1
+                    var scrollTo = (rv_chat_feed.adapter?.itemCount ?: 0) - 1
                     scrollTo = if (scrollTo >= 0) scrollTo else 0
                     rv_chat_feed.scrollToPosition(scrollTo)
                 }, 10)
@@ -186,10 +182,10 @@ class ChatActivity: AppCompatActivity(), IChatView {
         })
 
         rv_chat_feed.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
-                if (linearLayoutManager.findLastCompletelyVisibleItemPosition() < rv_chat_feed.adapter.itemCount - 5) {
+                if (linearLayoutManager.findLastCompletelyVisibleItemPosition() < (rv_chat_feed.adapter?.itemCount ?: 0) - 5) {
                     btnScrollToEnd.isEnabled = true
                     btnScrollToEnd.visibility = View.VISIBLE
                 } else {
@@ -216,7 +212,7 @@ class ChatActivity: AppCompatActivity(), IChatView {
         if ( recordingThread != null) {
             chatPresenter.stopHotwordDetection()
         }
-        (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(currentFocus.windowToken, 0)
+        currentFocus?.let { (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(it.windowToken, 0) }
         val ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.sttframe, STTfragment())
         ft.addToBackStack(null)
@@ -378,7 +374,7 @@ class ChatActivity: AppCompatActivity(), IChatView {
     }
 
     fun scrollToEnd(view: View) {
-        rv_chat_feed.smoothScrollToPosition(rv_chat_feed.adapter.itemCount - 1)
+        rv_chat_feed.smoothScrollToPosition((rv_chat_feed.adapter?.itemCount ?: 1) - 1)
     }
 
     fun openSettings(view: View) {

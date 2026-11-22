@@ -5,7 +5,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
 import kotlinx.android.synthetic.main.activity_forgot_password.*
@@ -33,7 +33,7 @@ class ForgotPasswordActivity : AppCompatActivity (), IForgotPasswordView {
         title = getString(R.string.forgot_pass_activity)
 
         if(savedInstanceState != null) {
-            forgot_email.editText?.setText(savedInstanceState.getCharSequenceArray(Constant.SAVED_STATES)[0].toString())
+            forgot_email.editText?.setText(savedInstanceState.getCharSequenceArray(Constant.SAVED_STATES)?.firstOrNull()?.toString())
             if (savedInstanceState.getBoolean(Constant.SERVER)) {
                input_url.visibility = View.VISIBLE
             } else {

@@ -5,8 +5,8 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -37,9 +37,9 @@ class SignUpActivity : AppCompatActivity(), ISignUpView {
         setupPasswordWatcher()
 
         if(savedInstanceState!=null){
-            email.editText?.setText(savedInstanceState.getCharSequenceArray(Constant.SAVED_STATES)[0].toString())
-            password.editText?.setText(savedInstanceState.getCharSequenceArray(Constant.SAVED_STATES)[1].toString())
-            confirm_password.editText?.setText(savedInstanceState.getCharSequenceArray(Constant.SAVED_STATES)[2].toString())
+            email.editText?.setText(savedInstanceState.getCharSequenceArray(Constant.SAVED_STATES)?.getOrNull(0)?.toString())
+            password.editText?.setText(savedInstanceState.getCharSequenceArray(Constant.SAVED_STATES)?.getOrNull(1)?.toString())
+            confirm_password.editText?.setText(savedInstanceState.getCharSequenceArray(Constant.SAVED_STATES)?.getOrNull(2)?.toString())
             if(savedInstanceState.getBoolean(Constant.SERVER)) {
                 input_url.visibility = View.VISIBLE
             } else {

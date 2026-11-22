@@ -3,7 +3,7 @@ package org.fossasia.susi.ai.skills.skilldetails.adapters.recycleradapters
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import org.fossasia.susi.ai.R
@@ -19,7 +19,7 @@ class SkillExamplesAdapter(val context: Context, val examples: List<String>): Re
 
     val clickListener: SkillExampleViewHolder.ClickListener = this
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): SkillExampleViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SkillExampleViewHolder {
         val itemView = LayoutInflater.from(parent?.context)
                 .inflate(R.layout.item_example_skill, parent, false)
         return SkillExampleViewHolder(itemView, clickListener)
@@ -29,7 +29,7 @@ class SkillExamplesAdapter(val context: Context, val examples: List<String>): Re
         return examples.size
     }
 
-    override fun onBindViewHolder(holder: SkillExampleViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: SkillExampleViewHolder, position: Int) {
         if(examples[position] != null && !examples[position].isEmpty()) {
             holder?.example?.text = examples[position]
         }

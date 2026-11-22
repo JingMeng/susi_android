@@ -2,7 +2,7 @@ package org.fossasia.susi.ai.chat.adapters.viewholders;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;

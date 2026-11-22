@@ -1,6 +1,6 @@
 package org.fossasia.susi.ai;
 
-import android.app.Application;
+import androidx.multidex.MultiDexApplication;
 
 import com.squareup.leakcanary.LeakCanary;
 
@@ -13,7 +13,7 @@ import io.realm.RealmConfiguration;
  * --30/09/16 at
  * --10:26 PM
  */
-public class MainApplication extends Application {
+public class MainApplication extends MultiDexApplication {
 
     private static MainApplication instance;
 

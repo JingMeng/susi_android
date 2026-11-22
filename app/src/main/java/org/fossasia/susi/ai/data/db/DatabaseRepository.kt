@@ -30,7 +30,7 @@ class DatabaseRepository: IDatabaseRepository {
     }
 
     override fun getAMessage(index: Long): ChatMessage {
-        return realm.where(ChatMessage::class.java).equalTo("id", index).findFirst()
+        return requireNotNull(realm.where(ChatMessage::class.java).equalTo("id", index).findFirst())
     }
 
     override fun deleteAllMessages() {
@@ -42,7 +42,7 @@ class DatabaseRepository: IDatabaseRepository {
     }
 
     override fun getAllMessages(): RealmResults<ChatMessage> {
-        return realm.where(ChatMessage::class.java).findAllSorted(Constant.ID)
+        return realm.where(ChatMessage::class.java).findAll().sort(Constant.ID)
     }
 
     override fun getSearchResults(query: String): RealmResults<ChatMessage> {

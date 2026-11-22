@@ -1,7 +1,7 @@
 package org.fossasia.susi.ai.skills
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import org.fossasia.susi.ai.R
 import android.content.Intent
 import android.util.Log

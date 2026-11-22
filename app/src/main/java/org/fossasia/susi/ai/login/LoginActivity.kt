@@ -4,7 +4,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
@@ -35,8 +35,8 @@ class LoginActivity : AppCompatActivity(), ILoginView {
         setContentView(R.layout.activity_login)
 
         if (savedInstanceState != null) {
-            email.editText?.setText(savedInstanceState.getCharSequenceArray(Constant.SAVED_STATES)[0].toString())
-            password.editText?.setText(savedInstanceState.getCharSequenceArray(Constant.SAVED_STATES)[1].toString())
+            email.editText?.setText(savedInstanceState.getCharSequenceArray(Constant.SAVED_STATES)?.getOrNull(0)?.toString())
+            password.editText?.setText(savedInstanceState.getCharSequenceArray(Constant.SAVED_STATES)?.getOrNull(1)?.toString())
             if (savedInstanceState.getBoolean(Constant.SERVER)) {
                 input_url.visibility = View.VISIBLE
             } else {

@@ -27,7 +27,7 @@ class SusiBaseUrls : Parcelable {
     }
 
     protected constructor(`in`: Parcel) {
-        this.susiServices = `in`.createStringArrayList()
+        this.susiServices = `in`.createStringArrayList() ?: emptyList()
     }
 
     companion object {

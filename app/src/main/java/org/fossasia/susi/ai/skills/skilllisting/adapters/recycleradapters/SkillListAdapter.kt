@@ -1,7 +1,7 @@
 package org.fossasia.susi.ai.skills.skilllisting.adapters.recycleradapters
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.squareup.picasso.Picasso
@@ -22,7 +22,7 @@ class SkillListAdapter(val context: Context, val skillDetails:  Pair<String, Map
     val imageLink = "https://raw.githubusercontent.com/fossasia/susi_skill_data/master/models/general/"
     val clickListener: SkillViewHolder.ClickListener = this
 
-    override fun onBindViewHolder(holder: SkillViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: SkillViewHolder, position: Int) {
         val skillData = skillDetails.second.values.toTypedArray()[position]
 
         if(skillData.skillName == null || skillData.skillName.isEmpty()){
@@ -72,7 +72,7 @@ class SkillListAdapter(val context: Context, val skillDetails:  Pair<String, Map
                 .commit()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): SkillViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SkillViewHolder {
         val itemView = LayoutInflater.from(parent?.context)
                 .inflate(R.layout.item_skill, parent, false)
         return SkillViewHolder(itemView, clickListener)

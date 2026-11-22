@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginTop="@dimen/margin_very_small">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:layout_width="@dimen/websearch_card_width"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/message_card_margin_small"
@@ -90,5 +90,5 @@
             </LinearLayout>
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

@@ -10,7 +10,7 @@ import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
 import android.os.IBinder
-import android.support.v4.app.ActivityCompat
+import androidx.core.app.ActivityCompat
 
 import java.lang.ref.WeakReference
 
@@ -123,11 +123,11 @@ class LocationHelper
         }
     }
 
-    override fun onLocationChanged(location: Location?) {
+    override fun onLocationChanged(location: Location) {
         if (location != null) {
             latitude = location.latitude
             longitude = location.longitude
-            source = location.provider
+            source = location.provider ?: ""
             canGetLocation = true
         }
     }

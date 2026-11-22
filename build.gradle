@@ -2,16 +2,14 @@
 
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
         mavenCentral()
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
-        classpath "io.realm:realm-gradle-plugin:3.5.0"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.1.3"
+        classpath 'com.android.tools.build:gradle:8.2.1'
+        classpath "io.realm:realm-gradle-plugin:10.19.0"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.20"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -20,10 +18,16 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
+        mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/public'; content { includeGroup 'com.takisoft.fix'; includeGroup 'io.realm'; includeGroup 'com.squareup.leakcanary' } }
         maven { url 'https://github.com/leonardocardoso/mvn-repo/raw/master/maven-deploy' }
         maven { url "https://jitpack.io" }
-        maven { url "https://maven.google.com" }
+        google()
     }
 }
 
+
+tasks.withType(JavaCompile).configureEach {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
